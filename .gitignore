@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+pnpm-lock.yaml
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Testing
+coverage/
+.jest/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# NPM credentials (if .npmrc contains token directly)
+# .npmrc
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
