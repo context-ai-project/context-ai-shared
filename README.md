@@ -1,4 +1,4 @@
-# @context-ai/shared
+# @context-ai-project/shared
 
 Shared types, DTOs, and validators for the Context.ai project.
 
@@ -13,12 +13,30 @@ Shared types, DTOs, and validators for the Context.ai project.
 
 ## 📦 Installation
 
+### Requisitos previos
+
+GitHub Packages requiere autenticación incluso para paquetes públicos. Configura tu `~/.npmrc` global:
+
+1. Crea un **Personal Access Token (Classic)** en GitHub con el scope `read:packages`:
+   - Ve a https://github.com/settings/tokens/new
+   - Marca ✅ `read:packages`
+   - Genera y copia el token
+
+2. Añade la configuración a tu `~/.npmrc`:
+
+```bash
+echo "//npm.pkg.github.com/:_authToken=ghp_TU_TOKEN_AQUI" >> ~/.npmrc
+echo "@context-ai-project:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+```
+
+### Instalar el paquete
+
 ```bash
 # Using pnpm
-pnpm add @context-ai/shared
+pnpm add @context-ai-project/shared
 
 # Using npm
-npm install @context-ai/shared
+npm install @context-ai-project/shared
 ```
 
 ## 🚀 Usage
@@ -26,7 +44,7 @@ npm install @context-ai/shared
 ### DTOs
 
 ```typescript
-import { IngestDocumentDto, ChatQueryDto } from '@context-ai/shared';
+import { IngestDocumentDto, ChatQueryDto } from '@context-ai-project/shared';
 
 // Use in your backend or frontend
 const dto = new IngestDocumentDto();
@@ -37,7 +55,7 @@ dto.title = 'Manual de Vacaciones';
 ### Enums
 
 ```typescript
-import { SourceType, MessageRole } from '@context-ai/shared';
+import { SourceType, MessageRole } from '@context-ai-project/shared';
 
 const type = SourceType.PDF;
 const role = MessageRole.USER;
@@ -46,7 +64,7 @@ const role = MessageRole.USER;
 ### Types
 
 ```typescript
-import type { User, Sector } from '@context-ai/shared';
+import type { User, Sector } from '@context-ai-project/shared';
 
 const user: User = {
   id: '123',
@@ -92,6 +110,19 @@ pnpm test:watch
 pnpm test:cov
 ```
 
+### Desarrollo local con otros proyectos
+
+Si estás trabajando en `context-ai-api` o `context-ai-front` y necesitas probar cambios en el paquete shared sin publicar una nueva versión:
+
+```bash
+# Desde el directorio del proyecto que consume el paquete (ej: context-ai-api)
+pnpm link ../context-ai-shared
+
+# Cuando termines, restaurar la versión publicada
+pnpm unlink @context-ai-project/shared
+pnpm install
+```
+
 ## 📝 Publishing
 
 This package is published **publicly** to GitHub Packages.
@@ -99,46 +130,39 @@ This package is published **publicly** to GitHub Packages.
 ### Prerequisites
 
 1. Create a GitHub Personal Access Token (Classic) with `write:packages` and `read:packages` permissions
-2. Export your token:
+2. Configure your `~/.npmrc`:
    ```bash
-   export GITHUB_TOKEN=ghp_your_token_here
+   echo "//npm.pkg.github.com/:_authToken=ghp_TU_TOKEN" >> ~/.npmrc
    ```
 
 ### Publishing Steps
 
 ```bash
-# 1. Login to GitHub Packages (one-time setup)
-echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
-
-# 2. Update version
+# 1. Update version
 pnpm version patch  # or minor/major
 
-# 3. Build the package
+# 2. Build the package
 pnpm build
 
-# 4. Publish to GitHub Packages
-pnpm publish --access public --registry https://npm.pkg.github.com
-
-# Or simply (if .npmrc is configured):
-pnpm publish
+# 3. Publish to GitHub Packages
+npm publish --registry=https://npm.pkg.github.com
 ```
 
 ### Installing from GitHub Packages
 
-Users need to configure their `.npmrc`:
+Users need to configure their `~/.npmrc`:
 
 ```bash
-# In project root or ~/.npmrc
-@context-ai:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=ghp_TU_TOKEN
+@context-ai-project:registry=https://npm.pkg.github.com/
 ```
 
 Then install normally:
 
 ```bash
-pnpm add @context-ai/shared
+pnpm add @context-ai-project/shared
 ```
 
 ## 📄 License
 
 MIT
-

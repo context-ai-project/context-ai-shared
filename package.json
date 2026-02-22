@@ -1,5 +1,5 @@
 {
-  "name": "@context-ai/shared",
+  "name": "@context-ai-project/shared",
   "version": "0.1.0",
   "description": "Shared types, DTOs and validators for Context.ai project",
   "private": false,
@@ -38,12 +38,12 @@
     "ts-jest": "^29.1.1"
   },
   "publishConfig": {
-    "@context-ai:registry": "https://npm.pkg.github.com",
+    "@context-ai-project:registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gromeroalfonso/context-ai-shared.git"
+    "url": "git+https://github.com/context-ai-project/context-ai-shared.git"
   }
 }
 
